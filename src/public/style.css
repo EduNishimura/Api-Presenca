@@ -62,7 +62,7 @@ nav a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 110px 20px 10px 20px;
+    margin: 100px 20px 10px 20px;
     gap: 25px;
 }
 
@@ -139,4 +139,50 @@ select{
 
 .button-aluno-active{
     background-color: rgb(255, 65, 65);    
+}
+
+.tabela-total{
+    width: 100%;
+    max-width: 1200px;
+}
+
+.faltas-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--box-grey);
+    border-radius: 0px 0px 7px 7px;
+}
+
+#cabeca-tabela{
+    width: 100%;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+    background-color: var(--box-grey);
+    border-radius: 7px 7px 0px 0px;
+}
+
+.faltas-linha-container{
+    width: 100%;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+}
+
+#cabeca-tabela{
+    background-color: #9d9d9d;
+}
+
+.falta-info{
+    width: 110px;
+    font-size: 14px;
 }

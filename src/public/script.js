@@ -360,7 +360,7 @@ async function buscarTodosRegistros() {
 async function exibirRegistros() {
     const resposta = await buscarTodosRegistros();
     const regs = resposta.result; 
-    const lista = document.getElementById('relatorio-list');
+    const lista = document.getElementById('tabela-faltas');
     lista.innerHTML = ''
     for (const aluno of regs) {
         
@@ -372,30 +372,30 @@ async function exibirRegistros() {
         await esperar(50);
 
         const nameLi = document.createElement('div'); 
-        nameLi.classList.add('form-check')
+        nameLi.classList.add('faltas-linha-container')
 
-        const label_data = document.createElement('label')
-        label_data.classList.add('form-check-label')
+        const label_data = document.createElement('p')
+        label_data.classList.add('falta-info')
         label_data.textContent = aluno.data;
 
-        const label_nomeA = document.createElement('label')
-        label_nomeA.classList.add('form-check-label')
+        const label_nomeA = document.createElement('p')
+        label_nomeA.classList.add('falta-info')
         label_nomeA.textContent = RegName;
 
-        const label_nomeT = document.createElement('label')
-        label_nomeT.classList.add('form-check-label')
+        const label_nomeT = document.createElement('p')
+        label_nomeT.classList.add('falta-info')
         label_nomeT.textContent = RegTurma;
      
-        const label_qtdnF = document.createElement('label')
-        label_qtdnF.classList.add('form-check-label')
+        const label_qtdnF = document.createElement('p')
+        label_qtdnF.classList.add('falta-info')
         label_qtdnF.textContent = RegNmrF;
 
-        const label_mat = document.createElement('label')
-        label_mat.classList.add('form-check-label')
+        const label_mat = document.createElement('p')
+        label_mat.classList.add('falta-info')
         label_mat.textContent = RegNameM;
 
-        const label_prof = document.createElement('label')
-        label_prof.classList.add('form-check-label')
+        const label_prof = document.createElement('p')
+        label_prof.classList.add('falta-info')
         label_prof.textContent = RegNameP;
 
 
@@ -410,8 +410,5 @@ async function exibirRegistros() {
         lista.appendChild(nameLi); 
     }
 }
-
-
 //window.onload = exibirAlunos;
-
 
