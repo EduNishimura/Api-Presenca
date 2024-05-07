@@ -1,9 +1,11 @@
 :root{
     --light_yellow: #f5f4ec;
-    --box-grey: #e7e4e4;
+    --box-red: #d14242;
+    --box-grey: #dddddd;
     --font_color: #2f2a25;
-    --button_color: #cfcbcb;
-    --contorno: #7e7e7e;
+    --button_color: #ac3b3b;
+    --contorno: #585858;
+    --sombra: #3b3b3b;
 }
 
 *{
@@ -24,7 +26,12 @@ header{
     align-items: center;
     height: 80px;
     padding: 0 3%;
-    background-color: var(--box-grey);
+    background-color: var(--box-red);
+}
+
+h1{
+    padding: 16px;
+    font-weight: bold;
 }
 
 
@@ -55,6 +62,8 @@ nav a{
     background-color: var(--button_color);
     border-radius: 15px;
     text-decoration: none;
+    color: var(--light_yellow);
+    font-weight: bold;
 }
 
 .data-sala{
@@ -63,7 +72,22 @@ nav a{
     justify-content: center;
     align-items: center;
     margin: 100px 20px 10px 20px;
+    gap: 20px;
+}
+
+.input-container{
+    width: min-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 25px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--contorno);
+    border-radius: 20px;
+    box-shadow: 5px 6px #3b3b3b;
 }
 
 h2{
@@ -120,10 +144,15 @@ select{
 .btn-confirm{
     font-size: medium;
     padding: 10px 15px 10px 15px;
-    background-color: var(--button_color);
-    border: none;
+    background-color: var(--box-red);
+    border: solid;
+    border-width: 2px;
+    border-color: var(--sombra);
     border-radius: 10px;
+    box-shadow: 3px 4px var(--sombra);
     text-decoration: none;
+    color: var(--light_yellow);
+    font-weight: bold;
 }
 
 .btn-confirm:active{
@@ -138,7 +167,7 @@ select{
 }
 
 .button-aluno-active{
-    background-color: rgb(255, 65, 65);    
+    background-color: var(--box-red);    
 }
 
 .tabela-total{
@@ -152,7 +181,7 @@ select{
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: var(--box-grey);
+    background-color: rgb(238, 238, 238);
     border-radius: 0px 0px 7px 7px;
 }
 
@@ -179,7 +208,12 @@ select{
 }
 
 #cabeca-tabela{
-    background-color: #9d9d9d;
+    background-color: var(--box-red);
+}
+
+#head-info{
+    color: var(--light_yellow);
+    font-weight: bold;
 }
 
 .falta-info{
