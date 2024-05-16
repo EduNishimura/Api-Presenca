@@ -267,6 +267,9 @@ var RegNameM = "";
 var RegNameP = "";
 
 
+var FiltroS;
+
+
 function esperar(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -361,7 +364,7 @@ async function exibirRegistros() {
     const resposta = await buscarTodosRegistros();
     const regs = resposta.result; 
     const lista = document.getElementById('tabela-faltas');
-    lista.innerHTML = ''
+    lista.innerHTML = '';
     for (const aluno of regs) {
         
         regAname(aluno.codigoaluno);
@@ -369,7 +372,7 @@ async function exibirRegistros() {
         regTu(aluno.codigoaluno);
         regMat(aluno.codigomateria);
         regProf(aluno.codigoprofessor);
-        await esperar(50);
+        await esperar(120);
 
         const nameLi = document.createElement('div'); 
         nameLi.classList.add('faltas-linha-container')
@@ -410,5 +413,119 @@ async function exibirRegistros() {
         lista.appendChild(nameLi); 
     }
 }
-//window.onload = exibirAlunos;
+
+//filtro
+
+async function filtroNome() {
+
+    var selectElement = document.getElementById('buscaNome');
+    var selectedValue = selectElement.value;
+    const response = await fetch(`http://localhost:3000/api/alunoN/${selectedValue}`);
+    const data = await response.json();
+    var Dr = data.result;
+    Dr.forEach(obj => {
+        objResult = obj.codigo;
+        FiltroS = objResult
+    });
+    await esperar(80);
+    const response2 = await fetch(`http://localhost:3000/api/faltaA/${FiltroS}`);
+    const data2 = await response2.json();
+    return data2;
+}
+
+async function filtroMat() {
+
+    var selectElement = document.getElementById('buscaMateria');
+    var selectedValue = selectElement.value;
+    const response = await fetch(`http://localhost:3000/api/materiaN/${selectedValue}`);
+    const data = await response.json();
+    var Dr = data.result;
+    Dr.forEach(obj => {
+        objResult = obj.codigo;
+        FiltroS = objResult
+    });
+    await esperar(80);
+    const response2 = await fetch(`http://localhost:3000/api/faltaM/${FiltroS}`);
+    const data2 = await response2.json();
+    return data2;
+}
+
+async function filtroData() {
+
+    var selectElement = document.getElementById('buscaData');
+    var selectedValue = selectElement.value;
+    const response2 = await fetch(`http://localhost:3000/api/faltaD/${selectedValue}`);
+    const data2 = await response2.json();
+    return data2;
+    
+}
+
+async function exibirRegistrosF(numChoice) {
+    //const resposta = await buscarTodosRegistros();
+    var resposta;
+    switch (numChoice) {
+        case 1:
+           resposta = await filtroNome();
+           break;
+        case 2:
+           resposta = await filtroMat();
+           break;
+        case 3:
+           resposta = await filtroData();
+           break;
+    }
+    const regs = resposta.result; 
+    const lista = document.getElementById('tabela-faltas');
+    lista.innerHTML = '';
+    for (const aluno of regs) {
+        
+        regAname(aluno.codigoaluno);
+        regAf(aluno.codigoaluno);
+        regTu(aluno.codigoaluno);
+        regMat(aluno.codigomateria);
+        regProf(aluno.codigoprofessor);
+        await esperar(80);
+
+        const nameLi = document.createElement('div'); 
+        nameLi.classList.add('faltas-linha-container')
+
+        const label_data = document.createElement('p')
+        label_data.classList.add('falta-info')
+        label_data.textContent = aluno.data;
+
+        const label_nomeA = document.createElement('p')
+        label_nomeA.classList.add('falta-info')
+        label_nomeA.textContent = RegName;
+
+        const label_nomeT = document.createElement('p')
+        label_nomeT.classList.add('falta-info')
+        label_nomeT.textContent = RegTurma;
+     
+        const label_qtdnF = document.createElement('p')
+        label_qtdnF.classList.add('falta-info')
+        label_qtdnF.textContent = RegNmrF;
+
+        const label_mat = document.createElement('p')
+        label_mat.classList.add('falta-info')
+        label_mat.textContent = RegNameM;
+
+        const label_prof = document.createElement('p')
+        label_prof.classList.add('falta-info')
+        label_prof.textContent = RegNameP;
+
+
+        nameLi.appendChild(label_data);
+        nameLi.appendChild(label_nomeA);
+        nameLi.appendChild(label_nomeT);
+        nameLi.appendChild(label_qtdnF);
+        nameLi.appendChild(label_mat);
+        nameLi.appendChild(label_prof);
+        
+
+        lista.appendChild(nameLi); 
+    }
+}
+
+
+
 

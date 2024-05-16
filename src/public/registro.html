@@ -26,14 +26,27 @@
         </nav>
     </header>
     <div class="data-sala">
+
+        <label for="buscaNome">Procure por nome</label>
+        <input type="text" id="buscaNome" name="buscaNome">
+        <button onclick="exibirRegistrosF(1)">Buscar nome</button>
+
+        <label for="buscaMateria">Procure por Materia</label>
+        <input type="text" id="buscaMateria" name="buscaMateria">
+        <button onclick="exibirRegistrosF(2)">Buscar materia</button>
+
+        <label for="buscaData">Procure por Data</label>
+        <input type="date" id="buscaData" name="buscaData">
+        <button onclick="exibirRegistrosF(3)">Buscar Data</button>
+
         <div class="tabela-total">
             <div class="faltas-linha-container" id="cabeca-tabela">
-                <p class="falta-info">Data</p>
-                <p class="falta-info">Nome</p>
-                <p class="falta-info">Turma</p>
-                <p class="falta-info">Faltas</p>
-                <p class="falta-info">Matéria</p>
-                <p class="falta-info">Professor</p>
+                <p class="falta-info" id="head-info">Data</p>
+                <p class="falta-info" id="head-info">Nome</p>
+                <p class="falta-info" id="head-info">Turma</p>
+                <p class="falta-info" id="head-info">Faltas</p>
+                <p class="falta-info" id="head-info">Matéria</p>
+                <p class="falta-info" id="head-info">Professor</p>
             </div>
             <div class="faltas-container" id="tabela-faltas">
                 <div class="faltas-linha-container"></div>
