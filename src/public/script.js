@@ -270,6 +270,9 @@ var RegNameP = "";
 var FiltroS;
 
 
+var FiltroS;
+
+
 function esperar(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -365,6 +368,7 @@ async function exibirRegistros() {
     const regs = resposta.result; 
     const lista = document.getElementById('tabela-faltas');
     lista.innerHTML = '';
+    lista.innerHTML = '';
     for (const aluno of regs) {
         
         regAname(aluno.codigoaluno);
@@ -372,6 +376,7 @@ async function exibirRegistros() {
         regTu(aluno.codigoaluno);
         regMat(aluno.codigomateria);
         regProf(aluno.codigoprofessor);
+        await esperar(120);
         await esperar(120);
 
         const nameLi = document.createElement('div'); 
