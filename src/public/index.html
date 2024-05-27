@@ -23,24 +23,26 @@
         </nav>
     </header>
     <div class="data-sala">
-        <h2>Registrar Faltas</h2>
-        <input class="data" type="date" id="formData" onchange="logicaData()">
-        <select class="form-select" id="formMat" aria-label="Default select example" onchange="mpData()" >
-            <option selected value="oops">Selecione a Matéria</option>
-            <option value="1">Matemática</option>
-            <option value="2">Historia</option>
-            <option value="3">Português</option>
-            <option value="4">Eduacação Física</option>
-            <option value="5">Ingles</option>            
-          </select>
-        <select class="form-select" id="formTurma" aria-label="Default select example" onchange="verifyExibirAlunos()">
-            <option selected>Selecione a sala</option>
-            <option value="1 Fund">Primeiro ano Fundamental</option>
-            <option value="2 Fund">Segundo ano Fundamental</option>
-            <option value="3 Fund">Terceiro ano Fundamental</option>
-            <option value="4 Fund">Quarto ano Fundamental</option>   
-            <option value="5 Fund">Quinto ano Fundamental</option>         
-          </select>
+        <h1>Registrar Faltas</h1>
+        <div class="input-container">
+            <input class="data" type="date" id="formData" onchange="logicaData()">
+            <select class="form-select" id="formMat" aria-label="Default select example" onchange="mpData()" >
+                <option selected value="oops">Selecione a Matéria</option>
+                <option value="1">Matemática</option>
+                <option value="2">Historia</option>
+                <option value="3">Português</option>
+                <option value="4">Eduacação Física</option>
+                <option value="5">Ingles</option>            
+            </select>
+            <select class="form-select" id="formTurma" aria-label="Default select example" onchange="verifyExibirAlunos()">
+                <option selected>Selecione a sala</option>
+                <option value="1 Fund">Primeiro ano Fundamental</option>
+                <option value="2 Fund">Segundo ano Fundamental</option>
+                <option value="3 Fund">Terceiro ano Fundamental</option>
+                <option value="4 Fund">Quarto ano Fundamental</option>   
+                <option value="5 Fund">Quinto ano Fundamental</option>         
+            </select>
+        </div>
     </div>
     <div class="sala-container">
         <div class="sala-nomes" id="alunos-list"></div>

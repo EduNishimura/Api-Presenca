@@ -26,19 +26,35 @@
         </nav>
     </header>
     <div class="data-sala">
-        <div class="tabela-total">
-            <div class="faltas-linha-container" id="cabeca-tabela">
-                <p class="falta-info">Data</p>
-                <p class="falta-info">Nome</p>
-                <p class="falta-info">Turma</p>
-                <p class="falta-info">Faltas</p>
-                <p class="falta-info">Matéria</p>
-                <p class="falta-info">Professor</p>
+        <div class="input-container" id="filter-container">
+            <label id="filter-title" for="input-container">Filtro</label>
+            <div class="filter-box">
+                <input type="text" class="inputs" id="buscaNome" name="buscaNome">
+                <button class="btn-search" onclick="exibirRegistrosF(1)">Buscar nome</button>
+                <option selected value="oops">Selecione a Matéria</option>
             </div>
-            <div class="faltas-container" id="tabela-faltas">
-                <div class="faltas-linha-container"></div>
+            <div class="filter-box">
+                <input type="text" class="inputs" id="buscaMateria" name="buscaMateria">
+                <button class="btn-search" onclick="exibirRegistrosF(2)">Buscar materia</button>
+            </div>
+            <div class="filter-box">
+                <input type="date" class="inputs" id="buscaData" name="buscaData">
+                <button class="btn-search" onclick="exibirRegistrosF(3)">Buscar Data</button>
             </div>
         </div>
+            <div class="tabela-total">
+                <div class="faltas-linha-container" id="cabeca-tabela">
+                    <p class="falta-info" id="head-info">Data</p>
+                    <p class="falta-info" id="head-info">Nome</p>
+                    <p class="falta-info" id="head-info">Turma</p>
+                    <p class="falta-info" id="head-info">Faltas</p>
+                    <p class="falta-info" id="head-info">Matéria</p>
+                    <p class="falta-info" id="head-info">Professor</p>
+                </div>
+                <div class="faltas-container" id="tabela-faltas">
+                    <div class="faltas-linha-container"></div>
+                </div>
+            </div>
         <!-- <button class="btn-confirm" onclick="exibirRegistros()">Confirmar</button> -->
     </div>
 </body>
