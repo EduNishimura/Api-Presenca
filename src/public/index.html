@@ -15,7 +15,9 @@
 </head>
 <body>
     <header>
-        <span class="material-symbols-outlined">settings</span>
+        <button class="open-font-config" id="config-btn">
+            <span class="material-symbols-outlined">settings</span>
+        </button>
         <nav>
             <a href="registro.html">Ver registro</a>
             <span class="material-symbols-outlined">account_circle</span>
@@ -23,6 +25,14 @@
         </nav>
     </header>
     <div class="data-sala">
+        <dialog id="modal" class="modal">
+            <h2>Configurações</h2>
+            <label for="fontSize">Tamanho da Fonte:</label>
+            <input type="range" id="fontSize" min="10" max="30" value="16">
+            <span id="fontSizeValue">16px</span>
+            <button id="applyFontSize">Aplicar</button>
+            <button id="closePopup">Fechar</button>
+        </dialog>
         <h1>Registrar Faltas</h1>
         <div class="input-container">
             <input class="data" type="date" id="formData" onchange="logicaData()">
@@ -48,5 +58,8 @@
         <div class="sala-nomes" id="alunos-list"></div>
         <button class="btn-confirm" onclick="verifyInserirF()">Confirmar</button>
     </div>
+    <script>
+        fontMenu();
+    </script>
 </body>
 </html>

@@ -1,3 +1,29 @@
+async function fontMenu(){
+    const modal = document.querySelector('.modal')
+    const button = document.querySelector('.open-font-config')
+    const closeModal = document.querySelector('#closePopup')
+    const fontSizeInput = document.getElementById("fontSize");
+    const applyFontSize = document.getElementById("applyFontSize");
+    const fontSizeValue = document.getElementById("fontSizeValue");
+    const content = document.querySelector("body");
+        
+    button.onclick = function () {
+        modal.showModal();
+    }
+    
+    closeModal.onclick = function () {
+        modal.close();
+    }
+
+    fontSizeInput.addEventListener("input", function() {
+        fontSizeValue.textContent = fontSizeInput.value + "px";
+    });
+
+    applyFontSize.addEventListener("click", function() {
+        const newSize = fontSizeInput.value + "px";
+        content.style.fontSize = newSize;
+    });
+}
 
 //variaveis do index
 
@@ -73,6 +99,7 @@ async function buscarTurma() {
         alert("Sem aula da materia selecionada esse dia" );
         const lista = document.getElementById('alunos-list');
         lista.innerHTML = '';
+        selectElement.selectedIndex = 0;
     }
 }
 
@@ -108,10 +135,12 @@ function criarBotao(aluno) {
 
 async function verifyExibirAlunos(){
     var selectElement = document.getElementById('formMat');
+    var selectElement2 = document.getElementById('formTurma');
     var selectedValueMateriaV = selectElement.value;
     var dateV = document.getElementById("formData").value;
     if(selectedValueMateriaV == "oops" || dateV == ""){
         alert("Selecione a data e a materia para registrar faltas");
+        selectElement2.selectedIndex = 0;
     }else{
         exibirAlunos()
     }
@@ -137,9 +166,38 @@ async function exibirAlunos() {
     });
 }
 
+//simula o envio do e-mail
+
+function criarMensagemFaltas(nomeAluno) {
+
+    const mensagem = `Caros pais,\n\nO aluno ${nomeAluno} apresenta uma alta quantidade de faltas e corre risco de reprovação por conta disso. Por favor, venham à escola para discutirmos o assunto o quanto antes possível.\n\nAtenciosamente,\n[Escola Octógono]`;
+
+
+    const nomeArquivo = `mensagem_faltas_${nomeAluno.replace(' ', '_')}.txt`;
+
+    const blob = new Blob([mensagem], { type: 'text/plain' });
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = nomeArquivo;
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+
+    console.log(`Arquivo '${nomeArquivo}' criado com sucesso.`);
+}
+
 //update 
 async function atualizarFaltas() {
     for (const alunoA of alunosF) {
+
+        if (alunoA.nmrfaltas >= 10){
+            alert("Aluno: " + alunoA.nome + " com numero de faltas elevado, mandando e-mail");
+            criarMensagemFaltas(alunoA.nome)
+
+        }
 
 
         const dadosAtualizados = {
@@ -201,7 +259,7 @@ async function profName() {
     paragrafP.innerHTML = nomeProfessorA;
 }  
 
-
+//verifica se tudo foi selecionado corretamente 
 async function verifyInserirF(){
     if(alunosF.length === 0){
         alert("Faltas não marcadas, seleciona as opções necessarias");
@@ -269,10 +327,7 @@ var RegNameP = "";
 
 var FiltroS;
 
-
-var FiltroS;
-
-
+//espera um tempo
 function esperar(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -368,7 +423,6 @@ async function exibirRegistros() {
     const regs = resposta.result; 
     const lista = document.getElementById('tabela-faltas');
     lista.innerHTML = '';
-    lista.innerHTML = '';
     for (const aluno of regs) {
         
         regAname(aluno.codigoaluno);
@@ -376,7 +430,6 @@ async function exibirRegistros() {
         regTu(aluno.codigoaluno);
         regMat(aluno.codigomateria);
         regProf(aluno.codigoprofessor);
-        await esperar(120);
         await esperar(120);
 
         const nameLi = document.createElement('div'); 
@@ -531,3 +584,32 @@ async function exibirRegistrosF(numChoice) {
     }
 }
 
+async function fontSize() {
+    document.addEventListener("DOMContentLoaded", function() {
+        const configBtn = document.getElementById("configBtn");
+        const configPopup = document.getElementById("configPopup");
+        const fontSizeInput = document.getElementById("fontSize");
+        const fontSizeValue = document.getElementById("fontSizeValue");
+        const applyFontSize = document.getElementById("applyFontSize");
+        const closePopup = document.getElementById("closePopup");
+        const content = document.querySelector(".content");
+    
+        configBtn.addEventListener("click", function() {
+            configPopup.style.display = "block";
+        });
+    
+        closePopup.addEventListener("click", function() {
+            configPopup.style.display = "none";
+        });
+    
+        fontSizeInput.addEventListener("input", function() {
+            fontSizeValue.textContent = fontSizeInput.value + "px";
+        });
+    
+        applyFontSize.addEventListener("click", function() {
+            const newSize = fontSizeInput.value + "px";
+            content.style.fontSize = newSize;
+            configPopup.style.display = "none";
+        });
+    });
+}
